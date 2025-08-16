@@ -130,27 +130,48 @@
     text-shadow: -2px 0 hsl(var(--secondary)), 2px 2px hsl(var(--accent));
     animation: glitch-anim-2 2s infinite linear reverse;
   }
-  .marquee {
-    overflow: hidden;
-    position: relative;
+  .marquee-3d-box {
+    display: flex;
     width: 100%;
+    max-width: 90vw; /* Limit width to prevent overflow on large screens */
+    margin: 0 auto;
   }
 
-  .marquee-content {
-    display: flex;
-    animation: marquee 20s linear infinite;
-    width: max-content;
+  .marquee-3d-inner {
+    width: 50%;
+    height: 120px;
+    line-height: 120px;
+    font-size: 4rem; /* Responsive font size */
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-3d-inner:first-child {
+    background-color: hsl(var(--primary) / 0.8);
+    color: hsl(var(--primary-foreground));
+    transform-origin: right;
+    transform: perspective(150px) rotateY(-15deg);
+  }
+
+  .marquee-3d-inner:last-child {
+    background-color: hsl(var(--accent) / 0.8);
+    color: hsl(var(--accent-foreground));
+    transform-origin: left;
+    transform: perspective(150px) rotateY(15deg);
+  }
+
+  .marquee-3d-inner span {
+    position: absolute;
+    animation: marquee-3d 8s linear infinite;
+    width: 200%; /* Ensure text is wide enough to scroll smoothly */
   }
   
-  .text-3d {
-    color: hsl(var(--primary));
-    text-shadow:
-      1px 1px 1px hsl(var(--primary) / 0.8),
-      2px 2px 1px hsl(var(--primary) / 0.6),
-      3px 3px 1px hsl(var(--primary) / 0.4),
-      4px 4px 1px hsl(var(--primary) / 0.2),
-      5px 5px 1px hsl(var(--primary) / 0.1),
-      6px 6px 10px hsla(0, 0%, 0%, 0.5);
+  .marquee-3d-inner:first-child span {
+    animation-delay: 4s;
+    left: -100%;
   }
 }
 
@@ -160,5 +181,14 @@
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+@keyframes marquee-3d {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: -100%;
   }
 }
