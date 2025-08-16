@@ -52,7 +52,7 @@ export function Header() {
             <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
           </span>
         </a>
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8">
           {navLinks.map(link => (
             <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
           ))}
