@@ -16,7 +16,15 @@ export function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="font-headline-display text-4xl md:text-6xl text-center mb-12 font-bold">Raves & Reviews</h2>
+        <h2 className="font-headline-display text-4xl md:text-6xl text-center mb-12 font-bold aurora-title">
+          Raves & Reviews
+          <div className="aurora">
+            <div className="aurora__item"></div>
+            <div className="aurora__item"></div>
+            <div className="aurora__item"></div>
+            <div className="aurora__item"></div>
+          </div>
+        </h2>
         <Carousel
           opts={{
             align: "start",
