@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Bot } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const NavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode, onClick?: () => void }) => (
@@ -46,8 +46,11 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <a href="#home" className="font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
-          <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
+        <a href="#home" className="flex items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
+          <Bot className="h-8 w-8 text-accent" />
+          <span>
+            <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
+          </span>
         </a>
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map(link => (
