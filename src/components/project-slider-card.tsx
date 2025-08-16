@@ -1,14 +1,11 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/components/sections/projects-section';
-import { DescriptionGenerator } from './description-generator';
-import { Wand2 } from 'lucide-react';
 
 interface ProjectCardProps {
   project: Project;
@@ -16,8 +13,6 @@ interface ProjectCardProps {
 }
 
 export function ProjectSliderCard({ project, index }: ProjectCardProps) {
-  const [description, setDescription] = useState(project.description);
-  const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
 
   return (
     <>
@@ -43,23 +38,10 @@ export function ProjectSliderCard({ project, index }: ProjectCardProps) {
         <CardContent className="p-6 flex-grow">
           <CardTitle className="font-headline text-2xl mb-4 group-hover:text-accent transition-colors">{project.title}</CardTitle>
           <p className="font-body text-foreground/80">
-            {description}
+            {project.description}
           </p>
         </CardContent>
-        <CardFooter className="p-6 pt-0 mt-auto">
-          <Button onClick={() => setIsGeneratorOpen(true)} variant="outline" className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <Wand2 className="mr-2 h-4 w-4" />
-            AI Enhance Description
-          </Button>
-        </CardFooter>
       </Card>
-
-      <DescriptionGenerator
-        isOpen={isGeneratorOpen}
-        setIsOpen={setIsGeneratorOpen}
-        setProjectDescription={setDescription}
-        project={project}
-      />
     </>
   );
 }
