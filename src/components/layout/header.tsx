@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
@@ -18,14 +19,39 @@ const NavLink = ({ href, children, onClick }: { href: string; children: React.Re
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 10);
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
     };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (e.clientY < 50) {
+        setIsVisible(true);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [lastScrollY]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -47,7 +73,8 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled || isMenuOpen ? "bg-background/80 backdrop-blur-sm shadow-lg shadow-primary/10" : "bg-transparent"
+        isScrolled || isMenuOpen ? "bg-background/80 backdrop-blur-sm shadow-lg shadow-primary/10" : "bg-transparent",
+        !isVisible && !isMenuOpen ? "-translate-y-full" : "translate-y-0"
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
