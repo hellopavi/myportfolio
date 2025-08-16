@@ -11,13 +11,13 @@ export function BlogSection() {
     <section id="blog" className="py-20 md:py-32 bg-card/50">
       <div className="container mx-auto px-4">
         <div className="flex justify-center mb-12">
-          <div className="scene">
-              <div className="cube">
-                  <div className="face face-1">The</div>
-                  <div className="face face-2">Blog</div>
-                  <div className="face face-3">The</div>
-                  <div className="face face-4">Blog</div>
-              </div>
+          <div className="box">
+            <div className="inner">
+              <span>The Blog</span>
+            </div>
+            <div className="inner">
+              <span>The Blog</span>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12">

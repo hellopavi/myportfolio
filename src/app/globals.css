@@ -175,6 +175,60 @@
       color: hsl(var(--accent-foreground));
       transform: rotateY(-90deg) translateZ(175px);
   }
+
+  .box {
+    display: flex;
+  }
+
+  .box .inner {
+    width: 30vw;
+    max-width: 400px;
+    height: 15vh;
+    max-height: 200px;
+    line-height: 15vh;
+    font-size: 4em;
+    font-family: sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .box .inner:first-child {
+    background-color: hsl(var(--primary) / 0.8);
+    color: hsl(var(--primary-foreground));
+    transform-origin: right;
+    transform: perspective(100px) rotateY(-15deg);
+  }
+
+  .box .inner:last-child {
+    background-color: hsl(var(--accent) / 0.8);
+    color: hsl(var(--accent-foreground));
+    transform-origin: left;
+    transform: perspective(100px) rotateY(15deg);
+  }
+
+  .box .inner span {
+    position: absolute;
+    animation: marquee-3d 5s linear infinite;
+  }
+
+  .box .inner:first-child span {
+    animation-delay: 2.5s;
+    left: -100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .box .inner {
+      font-size: 2.5em;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .box .inner {
+      font-size: 2em;
+    }
+  }
+
 }
 
 
