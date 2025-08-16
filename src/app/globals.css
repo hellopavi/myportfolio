@@ -129,49 +129,54 @@
     text-shadow: -2px 0 hsl(var(--secondary)), 2px 2px hsl(var(--accent));
     animation: glitch-anim-2 2s infinite linear reverse;
   }
-  .marquee-3d-box {
-    display: flex;
-    width: 100%;
-    max-width: 90vw; /* Limit width to prevent overflow on large screens */
-    margin: 0 auto;
-  }
-
-  .marquee-3d-inner {
-    width: 50%;
+ .scene {
+    width: 350px;
     height: 120px;
-    line-height: 120px;
-    font-size: clamp(2rem, 10vw, 4rem); /* Responsive font size */
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
+    perspective: 800px;
   }
 
-  .marquee-3d-inner:first-child {
-    background-color: hsl(var(--primary) / 0.8);
-    color: hsl(var(--primary-foreground));
-    transform-origin: right;
-    transform: perspective(150px) rotateY(-15deg);
+  .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate-cube 10s linear infinite;
   }
-
-  .marquee-3d-inner:last-child {
-    background-color: hsl(var(--accent) / 0.8);
-    color: hsl(var(--accent-foreground));
-    transform-origin: left;
-    transform: perspective(150px) rotateY(15deg);
+  .face {
+      position: absolute;
+      width: 350px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      backface-visibility: hidden;
+      font-family: 'Orbitron', sans-serif;
   }
-
-  .marquee-3d-inner span {
-    position: absolute;
-    animation: marquee-3d 8s linear infinite;
+  .face-1 {
+      background-color: hsl(var(--primary) / 0.8);
+      color: hsl(var(--primary-foreground));
+      transform: rotateY(0deg) translateZ(175px);
   }
-
-  .marquee-3d-inner:first-child span {
-    animation-delay: 4s;
-    left: -100%;
+  .face-2 {
+      background-color: hsl(var(--accent) / 0.8);
+      color: hsl(var(--accent-foreground));
+      transform: rotateY(90deg) translateZ(175px);
+  }
+  .face-3 {
+      background-color: hsl(var(--primary) / 0.8);
+      color: hsl(var(--primary-foreground));
+      transform: rotateY(180deg) translateZ(175px);
+  }
+  .face-4 {
+      background-color: hsl(var(--accent) / 0.8);
+      color: hsl(var(--accent-foreground));
+      transform: rotateY(-90deg) translateZ(175px);
   }
 }
+
 
 @keyframes marquee {
   0% {
@@ -189,4 +194,12 @@
   to {
     left: -100%;
   }
+}
+@keyframes rotate-cube {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(-360deg);
+    }
 }

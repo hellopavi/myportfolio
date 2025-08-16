@@ -23,21 +23,21 @@ export function AboutSection() {
               />
             </div>
           </div>
-          <div className="md:col-span-2 animate-fade-in-right">
-            <div className="box marquee-3d-box mb-8">
-              <div className="inner marquee-3d-inner">
-                <span>About Me</span>
-              </div>
-              <div className="inner marquee-3d-inner">
-                <span>About Me</span>
-              </div>
+          <div className="md:col-span-2 animate-fade-in-right flex flex-col items-center">
+            <div className="scene mb-8">
+                <div className="cube">
+                    <div className="face face-1">About</div>
+                    <div className="face face-2">Me</div>
+                    <div className="face face-3">About</div>
+                    <div className="face face-4">Me</div>
+                </div>
             </div>
             {aboutData.bio.map((paragraph, index) => (
-              <p key={index} className="font-body text-lg text-foreground/80 mb-6 last:mb-8">
+              <p key={index} className="font-body text-lg text-foreground/80 mb-6 last:mb-8 self-start">
                 {paragraph}
               </p>
             ))}
-            <Button asChild size="lg" className="font-headline text-lg group">
+            <Button asChild size="lg" className="font-headline text-lg group self-start">
               <a href={aboutData.resumeUrl} target="_blank" rel="noopener noreferrer">
                 Download My Resume
                 <Download className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
