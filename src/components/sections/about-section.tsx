@@ -12,7 +12,7 @@ export function AboutSection() {
           <div className="md:col-span-1 animate-fade-in-left">
             <div className="relative aspect-square rounded-full overflow-hidden border-4 border-accent shadow-2xl shadow-accent/20 transform hover:scale-105 transition-transform duration-500">
               <Image
-                src="/mypic4.png"
+                src="/home/user/studio/src/app/mypic4.png"
                 alt="Profile picture of Pavithran"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
