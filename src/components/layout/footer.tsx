@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+import { socialLinks } from '@/lib/data';
 
 const SocialLink = ({ href, children, title }: { href: string; children: React.ReactNode, title: string }) => (
   <a
@@ -20,16 +21,16 @@ export function Footer() {
           © {new Date().getFullYear()} Hello Pavi. Built with crazy mode.
         </p>
         <div className="flex items-center space-x-6">
-          <SocialLink href="/resume.pdf" title="Download Resume">
+          <SocialLink href={socialLinks.resume} title="Download Resume">
             <FileText className="h-6 w-6" />
           </SocialLink>
-          <SocialLink href="mailto:pavithranofficial1@gmail.com" title="Email">
+          <SocialLink href={`mailto:${socialLinks.email}`} title="Email">
             <Mail className="h-6 w-6" />
           </SocialLink>
-          <SocialLink href="https://github.com/hellopavi" title="GitHub">
+          <SocialLink href={socialLinks.github} title="GitHub">
             <Github className="h-6 w-6" />
           </SocialLink>
-          <SocialLink href="https://www.linkedin.com/in/hellopavi" title="LinkedIn">
+          <SocialLink href={socialLinks.linkedin} title="LinkedIn">
             <Linkedin className="h-6 w-6" />
           </SocialLink>
         </div>

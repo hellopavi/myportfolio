@@ -4,41 +4,7 @@ import { Calendar } from 'lucide-react';
 import Image from 'next/image';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-
-const blogPosts = [
-  {
-    slug: 'demystifying-generative-ai',
-    title: "Demystifying Generative AI",
-    date: "2024-07-21",
-    excerpt: "A deep dive into how generative AI is changing the landscape of web development and design.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "neural network visualization"
-  },
-  {
-    slug: 'the-art-of-ui-animation',
-    title: "The Art of UI Animation",
-    date: "2024-07-15",
-    excerpt: "Learn how to use animations to create engaging and intuitive user interfaces that delight users.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "smooth animation curves"
-  },
-  {
-    slug: 'headless-cms-for-the-modern-web',
-    title: "Headless CMS for the Modern Web",
-    date: "2024-07-08",
-    excerpt: "Exploring the benefits of a headless architecture for building fast, flexible, and future-proof websites.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "API connections diagram"
-  },
-    {
-    slug: 'building-scalable-react-applications',
-    title: "Building Scalable React Applications",
-    date: "2024-07-01",
-    excerpt: "Best practices and patterns for creating large-scale applications with React that are maintainable and performant.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "component tree structure"
-  },
-];
+import { blogPosts } from '@/lib/data';
 
 export default function BlogPage() {
   return (

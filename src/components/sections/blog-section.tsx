@@ -3,41 +3,16 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Image from 'next/image';
-
-const blogPosts = [
-  {
-    slug: 'demystifying-generative-ai',
-    title: "Demystifying Generative AI",
-    date: "2024-07-21",
-    excerpt: "A deep dive into how generative AI is changing the landscape of web development and design.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "neural network visualization"
-  },
-  {
-    slug: 'the-art-of-ui-animation',
-    title: "The Art of UI Animation",
-    date: "2024-07-15",
-    excerpt: "Learn how to use animations to create engaging and intuitive user interfaces that delight users.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "smooth animation curves"
-  },
-  {
-    slug: 'headless-cms-for-the-modern-web',
-    title: "Headless CMS for the Modern Web",
-    date: "2024-07-08",
-    excerpt: "Exploring the benefits of a headless architecture for building fast, flexible, and future-proof websites.",
-    image: "https://placehold.co/600x400.png",
-    imageHint: "API connections diagram"
-  },
-];
+import { blogPosts } from '@/lib/data';
 
 export function BlogSection() {
+  const featuredPosts = blogPosts.slice(0, 3);
   return (
     <section id="blog" className="py-20 md:py-32 bg-card/50">
       <div className="container mx-auto px-4">
         <h2 className="font-headline-display text-4xl md:text-6xl text-center mb-12 font-bold">From The Blog</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12">
-          {blogPosts.map((post, index) => (
+          {featuredPosts.map((post, index) => (
             <Card 
               key={post.slug}
               className="bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-up"

@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Rocket, User, Mail, MessageSquare } from "lucide-react";
+import { contactData } from "@/lib/data";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -40,10 +41,10 @@ export function ContactSection() {
     <section id="contact" className="py-20 md:py-32 overflow-hidden">
       <div className="container mx-auto px-4">
         <h2 className="font-headline-display text-4xl md:text-6xl text-center mb-4 font-bold animate-glitch" data-text="Launch a Transmission">
-          Launch a Transmission
+          {contactData.title}
         </h2>
         <p className="font-body text-center text-lg text-foreground/80 max-w-2xl mx-auto mb-12">
-          Got a cosmic idea, a wild project, or just want to decode the universe? Send your signal. My inbox is ready for warp speed.
+          {contactData.description}
         </p>
         <div className="max-w-xl mx-auto p-8 border border-primary/20 rounded-2xl bg-card/50 backdrop-blur-sm relative transition-all duration-500 hover:shadow-2xl hover:shadow-accent/30 hover:scale-105">
           <div className="absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-accent rounded-tl-2xl animate-pulse"></div>

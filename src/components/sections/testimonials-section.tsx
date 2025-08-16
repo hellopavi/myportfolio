@@ -10,30 +10,7 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
-const testimonials = [
-  {
-    name: "Jane Doe",
-    title: "CEO, Innovate Inc.",
-    image: "https://placehold.co/100x100.png",
-    imageHint: "woman professional portrait",
-    quote: "Working with them was an absolute pleasure. Their creativity and technical expertise are unmatched. They took our vision and turned it into a reality that exceeded all our expectations.",
-  },
-  {
-    name: "John Smith",
-    title: "Project Manager, Tech Solutions",
-    image: "https://placehold.co/100x100.png",
-    imageHint: "man professional portrait",
-    quote: "The level of professionalism and dedication to our project was outstanding. They are not just a developer, but a true partner who is invested in your success. Highly recommended!",
-  },
-  {
-    name: "Emily White",
-    title: "Art Director, Creative Co.",
-    image: "https://placehold.co/100x100.png",
-    imageHint: "person professional portrait",
-    quote: "I've never seen a developer with such a keen eye for design. The final product was not only technically flawless but also visually stunning. A rare combination of skills!",
-  },
-]
+import { testimonials } from "@/lib/data"
 
 export function TestimonialsSection() {
   return (
