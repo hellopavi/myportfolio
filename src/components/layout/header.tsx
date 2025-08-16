@@ -28,11 +28,9 @@ export function Header() {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 10);
       
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down
+      if (currentScrollY > 10) {
         setIsVisible(false);
       } else {
-        // Scrolling up
         setIsVisible(true);
       }
       setLastScrollY(currentScrollY);
