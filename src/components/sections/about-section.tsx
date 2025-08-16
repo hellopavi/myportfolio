@@ -24,12 +24,30 @@ export function AboutSection() {
             </div>
           </div>
           <div className="md:col-span-2 animate-fade-in-right">
-            <h2 
-              className="font-headline-display text-4xl md:text-6xl font-bold mb-4 animate-glitch"
-              data-text="About Me"
-            >
-              About Me
-            </h2>
+            <div className="marquee mb-4">
+              <div className="marquee-content">
+                <h2 
+                  className="font-headline-display text-4xl md:text-6xl font-bold text-3d px-4"
+                >
+                  About Me
+                </h2>
+                <h2 
+                  className="font-headline-display text-4xl md:text-6xl font-bold text-3d px-4"
+                >
+                  About Me
+                </h2>
+                 <h2 
+                  className="font-headline-display text-4xl md:text-6xl font-bold text-3d px-4"
+                >
+                  About Me
+                </h2>
+                <h2 
+                  className="font-headline-display text-4xl md:text-6xl font-bold text-3d px-4"
+                >
+                  About Me
+                </h2>
+              </div>
+            </div>
             {aboutData.bio.map((paragraph, index) => (
               <p key={index} className="font-body text-lg text-foreground/80 mb-6 last:mb-8">
                 {paragraph}
