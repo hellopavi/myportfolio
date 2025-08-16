@@ -8,7 +8,7 @@ export const aboutData = {
     "I'm Pavithran, a curious and motivated individual with a strong passion for Artificial Intelligence. My journey began with exploring various internet resources, where I diving deep into machine learning, deep learning, and computer vision. I have hands-on experience with scikit-learn and TensorFlow, which I use to build and optimize AI models. My background in computer science and engineering has equipped me with the skills to tackle real-world problems and develop practical solutions.",
     "I'm eager to apply my knowledge in AI through collaboration on real-world projects, from data preprocessing to model deployment. I thrive in both independent and team settings, always looking to learn, grow, and contribute to innovative AI solutions. My goal is to gain hands-on experience and further develop my technical skills by working with experienced professionals in the field.",
   ],
-  resumeUrl: "/pdf/pavithran_resume.pdf",
+  resumeUrl: "/pavithran_resume.pdf",
 };
 
 export const projects = [
@@ -169,7 +169,7 @@ export const skillCategories = [
 ];
 
 export const socialLinks = {
-  resume: "/pdf/pavithran_resume.pdf",
+  resume: "/pavithran_resume.pdf",
   email: "pavithranofficial1@gmail.com",
   github: "https://github.com/hellopavi",
   linkedin: "https://www.linkedin.com/in/hellopavi"
