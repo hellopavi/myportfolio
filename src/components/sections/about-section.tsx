@@ -30,7 +30,7 @@ export function AboutSection() {
               </p>
             ))}
             <Button asChild size="lg" className="font-headline text-lg group">
-              <a href={aboutData.resumeUrl} download>
+              <a href={aboutData.resumeUrl} target="_blank" rel="noopener noreferrer">
                 Download My Resume
                 <Download className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
               </a>
