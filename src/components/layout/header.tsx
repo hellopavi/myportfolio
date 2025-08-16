@@ -26,13 +26,12 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 10);
-      
       if (currentScrollY > 10) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
+      setIsScrolled(currentScrollY > 10);
       setLastScrollY(currentScrollY);
     };
 
@@ -76,7 +75,7 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8">
+        <nav className="hidden md:flex flex-1 items-center justify-around">
           {leftNavLinks.map(link => (
             <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
           ))}
@@ -97,7 +96,7 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden md:flex flex-1 items-center justify-start space-x-8">
+        <nav className="hidden md:flex flex-1 items-center justify-around">
            {rightNavLinks.map(link => (
             <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
           ))}
