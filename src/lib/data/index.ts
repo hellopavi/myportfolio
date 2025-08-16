@@ -17,7 +17,7 @@ export const projects = [
   {
     title: "Machine Learning Projects",
     category: "Machine Learning",
-    image: "/images/project-ml.png",
+    image: "/images/projects/ml.jpg",
     imageHint: "abstract machine learning",
     description: "A collection of machine learning projects including salary classification (KNN), digit classification (SVM), leaf prediction, Titanic survival prediction (Naive Bayes), breast cancer classification, and digit recognition (Random Forest).",
     keywords: "KNN, SVM, Decision Tree, Naive Bayes, Random Forest",
@@ -26,7 +26,7 @@ export const projects = [
   {
     title: "Deep Learning Projects",
     category: "Deep Learning",
-    image: "/images/project-dl.png",
+    image: "/images/projects/dl.webp",
     imageHint: "neural network",
     description: "Developed deep learning models for image classification, character recognition, and hand gesture recognition using Convolutional Neural Networks (CNNs).",
     keywords: "Deep Learning, CNN, Image Classification, Character Recognition, Gesture Recognition",
@@ -35,7 +35,7 @@ export const projects = [
   {
     title: "Computer Vision Projects",
     category: "Computer Vision",
-    image: "/images/project-cv.png",
+    image: "/images/projects/cv.webp",
     imageHint: "object detection overlay",
     description: "Projects in computer vision including moving object detection, face detection, and emotion recognition using pre-built libraries.",
     keywords: "Computer Vision, OpenCV, Object Detection, Face Detection, Emotion Recognition",
@@ -50,21 +50,21 @@ export const testimonials = [
   {
     name: "Jane Doe",
     title: "CEO, Innovate Inc.",
-    image: "/images/testimonial-1.png",
+    image: "/images/clients/men27.jpg",
     imageHint: "woman professional portrait",
     quote: "Working with them was an absolute pleasure. Their creativity and technical expertise are unmatched. They took our vision and turned it into a reality that exceeded all our expectations.",
   },
   {
     name: "John Smith",
     title: "Project Manager, Tech Solutions",
-    image: "/images/testimonial-2.png",
+    image: "/images/clients/men35.png",
     imageHint: "man professional portrait",
     quote: "The level of professionalism and dedication to our project was outstanding. They are not just a developer, but a true partner who is invested in your success. Highly recommended!",
   },
   {
     name: "Emily White",
     title: "Art Director, Creative Co.",
-    image: "/images/testimonial-3.png",
+    image: "/images/clients/fem27.png",
     imageHint: "person professional portrait",
     quote: "I've never seen a developer with such a keen eye for design. The final product was not only technically flawless but also visually stunning. A rare combination of skills!",
   },
@@ -76,7 +76,7 @@ export const blogPosts = [
     title: "Demystifying Generative AI",
     date: "2024-07-21",
     excerpt: "A deep dive into how generative AI is changing the landscape of web development and design.",
-    image: "/images/blog-gen-ai.png",
+    image: "/images/blog/b.png",
     imageHint: "neural network visualization",
     tags: ["AI", "Web Dev", "Future Tech"],
     content: `
@@ -94,7 +94,7 @@ export const blogPosts = [
     title: "The Art of UI Animation",
     date: "2024-07-15",
     excerpt: "Learn how to use animations to create engaging and intuitive user interfaces that delight users.",
-    image: "/images/blog-ui-animation.png",
+    image: "/images/blog/d.png",
     imageHint: "smooth animation curves",
     tags: ["UI/UX", "Design", "Frontend"],
     content: `
@@ -109,7 +109,7 @@ export const blogPosts = [
     title: "Headless CMS for the Modern Web",
     date: "2024-07-08",
     excerpt: "Exploring the benefits of a headless architecture for building fast, flexible, and future-proof websites.",
-    image: "/images/blog-headless-cms.png",
+    image: "/images/blog/c.webp",
     imageHint: "API connections diagram",
     tags: ["CMS", "Architecture", "Web Dev"],
     content: `<p>A headless CMS decouples the content management backend from the presentation layer frontend. This post explores why this architecture is gaining popularity for building modern, multi-platform digital experiences.</p>`
@@ -119,7 +119,7 @@ export const blogPosts = [
     title: "Building Scalable React Applications",
     date: "2024-07-01",
     excerpt: "Best practices and patterns for creating large-scale applications with React that are maintainable and performant.",
-    image: "/images/blog-react-scaling.png",
+    image: "/images/blog/a.png",
     imageHint: "component tree structure",
     tags: ["React", "Scalability", "Best Practices"],
     content: `<p>As React applications grow, maintaining them can become a challenge. This article covers architectural patterns like feature-based directory structures, state management strategies, and component design principles to keep your codebase clean and scalable.</p>`
@@ -171,7 +171,7 @@ export const skillCategories = [
 ];
 
 export const socialLinks = {
-  resume: resumeUrl,
+  resume: "https://drive.google.com/file/d/1WzQauysTn6igeazuxZRWkpv9X7vlESpg/view?usp=sharing",
   email: "pavithranofficial1@gmail.com",
   github: "https://github.com/hellopavi",
   linkedin: "https://www.linkedin.com/in/hellopavi"

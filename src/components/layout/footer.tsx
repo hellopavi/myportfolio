@@ -18,7 +18,7 @@ export function Footer() {
     <footer className="border-t border-primary/20 py-8 bg-card/20">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
         <p className="font-body text-foreground/80 text-center md:text-left mb-4 md:mb-0">
-          © {new Date().getFullYear()} Hello Pavi. Built with crazy mode.
+          © {new Date().getFullYear()} Pavithran. Built with crazy mode.
         </p>
         <div className="flex items-center space-x-6">
           <SocialLink href={socialLinks.resume} title="View Resume">
