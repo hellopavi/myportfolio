@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Rocket, User, Mail, MessageSquare } from "lucide-react";
-import { contactData } from "@/lib/data";
+import { contactData } from '@/lib/data';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
