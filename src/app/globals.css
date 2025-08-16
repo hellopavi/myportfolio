@@ -166,7 +166,7 @@
   .marquee-3d-inner span {
     position: absolute;
     animation: marquee-3d 8s linear infinite;
-    width: 200%; /* Ensure text is wide enough to scroll smoothly */
+    width: 100%;
   }
   
   .marquee-3d-inner:first-child span {
