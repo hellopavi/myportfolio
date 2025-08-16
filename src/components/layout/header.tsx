@@ -46,8 +46,8 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <a href="#home" className="font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="Pavithran">
-          <span className="text-primary">Pavi</span><span className="text-accent">thran</span>
+        <a href="#home" className="font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
+          <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
         </a>
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map(link => (
