@@ -11,7 +11,7 @@ const NavLink = ({ href, children, onClick }: { href: string; children: React.Re
     className="group font-headline text-lg uppercase tracking-widest text-foreground/80 transition-colors hover:text-accent relative"
   >
     {children}
-    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300"></span>
   </a>
 );
 
@@ -29,14 +29,19 @@ export function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
+  const leftNavLinks = [
     { href: "#testimonials", label: "Raves" },
     { href: "#blog", label: "Blog" },
+    { href: "#about", label: "About" },
+  ];
+
+  const rightNavLinks = [
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
   ];
+  
+  const allNavLinks = [...leftNavLinks, ...rightNavLinks];
 
   return (
     <header
@@ -46,17 +51,33 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <a href="#home" className="flex items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
+        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8">
+          {leftNavLinks.map(link => (
+            <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
+          ))}
+        </nav>
+
+        <a href="#home" className="hidden md:flex items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch mx-8" data-text="HelloPavi">
           <Bot className="h-8 w-8 text-accent" />
           <span>
             <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
           </span>
         </a>
-        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8">
-          {navLinks.map(link => (
+        
+        {/* Mobile Logo */}
+        <a href="#home" className="flex md:hidden items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
+          <Bot className="h-8 w-8 text-accent" />
+          <span>
+            <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
+          </span>
+        </a>
+
+        <nav className="hidden md:flex flex-1 items-center justify-start space-x-8">
+           {rightNavLinks.map(link => (
             <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
           ))}
         </nav>
+
         <div className="md:hidden">
             <Button onClick={toggleMenu} variant="ghost" size="icon">
                 {isMenuOpen ? <X className="h-7 w-7 text-accent" /> : <Menu className="h-7 w-7 text-accent" />}
@@ -66,7 +87,14 @@ export function Header() {
       {isMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl">
             <nav className="flex flex-col items-center space-y-6 py-8 border-t border-primary/20">
-              {navLinks.map(link => (
+              {[
+                { href: "#testimonials", label: "Raves" },
+                { href: "#blog", label: "Blog" },
+                { href: "#about", label: "About" },
+                { href: "#skills", label: "Skills" },
+                { href: "#projects", label: "Projects" },
+                { href: "#contact", label: "Contact" },
+              ].map(link => (
                 <NavLink key={link.href} href={link.href} onClick={toggleMenu}>{link.label}</NavLink>
               ))}
             </nav>
