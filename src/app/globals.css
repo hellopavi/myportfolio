@@ -23,7 +23,6 @@
     --border: 217 91% 20%;
     --input: 217 91% 15%;
     --ring: 217 91% 60%;
-    --radius: 0.5rem;
     --chart-1: 217 91% 60%;
     --chart-2: 333 91% 55%;
     --chart-3: 142 71% 45%;
@@ -167,7 +166,7 @@
     position: absolute;
     animation: marquee-3d 8s linear infinite;
   }
-  
+
   .marquee-3d-inner:first-child span {
     animation-delay: 4s;
     left: -100%;
