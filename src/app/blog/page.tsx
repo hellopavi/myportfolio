@@ -47,7 +47,7 @@ export default function BlogPage() {
       <main className="flex-1 pt-20">
         <section className="py-20 md:py-32">
           <div className="container mx-auto px-4">
-            <h1 className="font-headline-display text-5xl md:text-7xl text-center mb-16 font-bold">The Vibe Vault Blog</h1>
+            <h1 className="font-headline-display text-5xl md:text-7xl text-center mb-16 font-bold">The Hello Pavi Blog</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               {blogPosts.map((post, index) => (
                 <Card
