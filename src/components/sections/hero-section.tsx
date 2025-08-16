@@ -14,7 +14,7 @@ export function HeroSection() {
           <span className="text-primary">Hello</span> <span className="text-accent">Pavi</span>
         </h1>
         <p className="font-body text-xl md:text-2xl max-w-3xl mx-auto text-foreground/80 mb-8 animate-[fade-in-up_0.5s_0.2s_ease-out_forwards]" style={{opacity: 0}}>
-          A creative developer exploring the frontiers of web technology and design. Unleashing digital chaos.
+          A Computer Science Engineer exploring the frontiers of web technology and Artificial Intelligence.
         </p>
         <div className="animate-[fade-in-up_0.5s_0.4s_ease-out_forwards]" style={{opacity: 0}}>
           <Button asChild size="lg" className="font-headline text-lg group">

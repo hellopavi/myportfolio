@@ -1,6 +1,6 @@
 const skills = [
-  "React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS",
-  "Figma", "UI/UX Design", "GenAI", "Firebase", "Node.js", "GraphQL", "Web Animations"
+  "Machine learning", "Deep learning", "Computer vision", "Git and Github", "Quick learning",
+  "Matplotlib", "Pandas", "Numpy", "Web development fundamentals", "scikit-learn", "TensorFlow", "Python"
 ];
 
 export function SkillsSection() {

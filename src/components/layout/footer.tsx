@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 
 const SocialLink = ({ href, children, title }: { href: string; children: React.ReactNode, title: string }) => (
   <a
@@ -23,13 +23,13 @@ export function Footer() {
           <SocialLink href="/resume.pdf" title="Download Resume">
             <FileText className="h-6 w-6" />
           </SocialLink>
-          <SocialLink href="https://twitter.com" title="Twitter">
-            <Twitter className="h-6 w-6" />
+          <SocialLink href="mailto:pavithranofficial1@gmail.com" title="Email">
+            <Mail className="h-6 w-6" />
           </SocialLink>
-          <SocialLink href="https://github.com" title="GitHub">
+          <SocialLink href="https://github.com/hellopavi" title="GitHub">
             <Github className="h-6 w-6" />
           </SocialLink>
-          <SocialLink href="https://linkedin.com" title="LinkedIn">
+          <SocialLink href="https://www.linkedin.com/in/hellopavi" title="LinkedIn">
             <Linkedin className="h-6 w-6" />
           </SocialLink>
         </div>
