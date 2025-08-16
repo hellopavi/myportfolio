@@ -8,10 +8,10 @@ const NavLink = ({ href, children, onClick }: { href: string; children: React.Re
   <a
     href={href}
     onClick={onClick}
-    className="group font-headline text-lg uppercase tracking-widest text-foreground/80 transition-colors hover:text-accent"
+    className="group font-headline text-lg uppercase tracking-widest text-foreground/80 transition-colors hover:text-accent relative"
   >
     {children}
-    <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-accent"></span>
+    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
   </a>
 );
 
@@ -29,34 +29,43 @@ export function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const navLinks = [
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
+    { href: "#testimonials", label: "Raves" },
+    { href: "#blog", label: "Blog" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled || isMenuOpen ? "bg-background/80 backdrop-blur-sm shadow-lg" : "bg-transparent"
+        isScrolled || isMenuOpen ? "bg-background/80 backdrop-blur-sm shadow-lg shadow-primary/10" : "bg-transparent"
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <a href="#home" className="font-headline text-2xl font-bold">
+        <a href="#home" className="font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="VibeVault">
           <span className="text-primary">Vibe</span><span className="text-accent">Vault</span>
         </a>
-        <nav className="hidden md:flex items-center space-x-8">
-          <NavLink href="#skills">Skills</NavLink>
-          <NavLink href="#projects">Projects</NavLink>
-          <NavLink href="#contact">Contact</NavLink>
+        <nav className="hidden md:flex items-center space-x-6">
+          {navLinks.map(link => (
+            <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
+          ))}
         </nav>
         <div className="md:hidden">
             <Button onClick={toggleMenu} variant="ghost" size="icon">
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? <X className="h-7 w-7 text-accent" /> : <Menu className="h-7 w-7 text-accent" />}
             </Button>
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden">
-            <nav className="flex flex-col items-center space-y-4 py-4 border-t border-primary/20">
-                <NavLink href="#skills" onClick={toggleMenu}>Skills</NavLink>
-                <NavLink href="#projects" onClick={toggleMenu}>Projects</NavLink>
-                <NavLink href="#contact" onClick={toggleMenu}>Contact</NavLink>
+        <div className="md:hidden bg-background/95 backdrop-blur-xl">
+            <nav className="flex flex-col items-center space-y-6 py-8 border-t border-primary/20">
+              {navLinks.map(link => (
+                <NavLink key={link.href} href={link.href} onClick={toggleMenu}>{link.label}</NavLink>
+              ))}
             </nav>
         </div>
       )}

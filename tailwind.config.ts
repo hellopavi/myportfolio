@@ -1,4 +1,5 @@
 import type {Config} from 'tailwindcss';
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 export default {
   darkMode: ['class'],
@@ -12,6 +13,7 @@ export default {
       fontFamily: {
         body: ['Alegreya', 'serif'],
         headline: ['Belleza', 'sans-serif'],
+        'headline-display': ['Orbitron', ...fontFamily.sans],
         code: ['monospace'],
       },
       colors: {
@@ -104,14 +106,59 @@ export default {
             transform: 'translateY(0)',
           },
         },
+        'fade-in-left': {
+          from: {
+            opacity: '0',
+            transform: 'translateX(-20px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
+        'fade-in-right': {
+          from: {
+            opacity: '0',
+            transform: 'translateX(20px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
+        'glitch-anim-1': {
+          '0%': { clip: 'rect(32px, 9999px, 89px, 0)' },
+          '20%': { clip: 'rect(7px, 9999px, 92px, 0)' },
+          '40%': { clip: 'rect(42px, 9999px, 99px, 0)' },
+          '60%': { clip: 'rect(21px, 9999px, 90px, 0)' },
+          '80%': { clip: 'rect(2px, 9999px, 85px, 0)' },
+          '100%': { clip: 'rect(47px, 9999px, 97px, 0)' },
+        },
+        'glitch-anim-2': {
+          '0%': { clip: 'rect(3px, 9999px, 99px, 0)' },
+          '20%': { clip: 'rect(43px, 9999px, 96px, 0)' },
+          '40%': { clip: 'rect(11px, 9999px, 87px, 0)' },
+          '60%': { clip: 'rect(5px, 9999px, 91px, 0)' },
+          '80%': { clip: 'rect(31px, 9999px, 83px, 0)' },
+          '100%': { clip: 'rect(13px, 9999px, 93px, 0)' },
+        },
+        'scroll-down': {
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+          '50%': { opacity: '1' },
+          '100%': { transform: 'translateY(10px)', opacity: '0' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'blob': 'blob 7s infinite',
-        'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        'fade-in-left': 'fade-in-left 0.8s ease-out forwards',
+        'fade-in-right': 'fade-in-right 0.8s ease-out forwards',
+        'glitch': 'glitch-anim-1 2.5s infinite linear reverse, glitch-anim-2 2s infinite linear reverse',
+        'scroll-down': 'scroll-down 2s ease-out infinite',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config;
