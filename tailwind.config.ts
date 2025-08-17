@@ -11,9 +11,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Alegreya', 'serif'],
-        headline: ['Belleza', 'sans-serif'],
-        'headline-display': ['Orbitron', ...fontFamily.sans],
+        body: ['var(--font-alegreya)', 'serif'],
+        headline: ['var(--font-belleza)', 'sans-serif'],
+        'headline-display': ['var(--font-orbitron)', ...fontFamily.sans],
         code: ['monospace'],
       },
       colors: {

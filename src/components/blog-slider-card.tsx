@@ -14,7 +14,7 @@ interface BlogSliderCardProps {
     post: (typeof blogPosts)[0];
 }
 
-export function BlogSliderCard({ post }: BlogSliderCardProps) {
+export const BlogSliderCard = React.memo(function BlogSliderCard({ post }: BlogSliderCardProps) {
     const { ref, inView } = useInView({
         threshold: 0.5,
     });
@@ -54,5 +54,4 @@ export function BlogSliderCard({ post }: BlogSliderCardProps) {
             </Link>
         </div>
     );
-}
-
+});

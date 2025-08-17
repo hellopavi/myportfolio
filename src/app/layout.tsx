@@ -1,10 +1,30 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import { Belleza, Alegreya, Orbitron } from 'next/font/google';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Pavithran',
   description: 'A creative portfolio for a visionary developer.',
 };
+
+const belleza = Belleza({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-belleza',
+});
+
+const alegreya = Alegreya({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-alegreya',
+});
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  variable: '--font-orbitron',
+});
 
 export default function RootLayout({
   children,
@@ -13,14 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body bg-background text-foreground antialiased" suppressHydrationWarning>{children}</body>
+      <body className={cn("font-body bg-background text-foreground antialiased", belleza.variable, alegreya.variable, orbitron.variable)} suppressHydrationWarning>{children}</body>
     </html>
   );
 }

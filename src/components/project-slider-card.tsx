@@ -13,7 +13,7 @@ interface ProjectCardProps {
   index: number;
 }
 
-export function ProjectSliderCard({ project, index }: ProjectCardProps) {
+export const ProjectSliderCard = React.memo(function ProjectSliderCard({ project, index }: ProjectCardProps) {
 
   return (
     <Link href={`/projects/${project.slug}`} className="h-full block">
@@ -42,4 +42,4 @@ export function ProjectSliderCard({ project, index }: ProjectCardProps) {
       </Card>
     </Link>
   );
-}
+});
