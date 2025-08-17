@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ProjectFile } from '@/lib/projects';
@@ -21,6 +21,12 @@ export function Lightbox({ files, currentIndex, onClose, setCurrentIndex }: Ligh
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(onClose, 300);
+  };
+
+  const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
   };
 
   const goToNext = () => {
@@ -54,11 +60,9 @@ export function Lightbox({ files, currentIndex, onClose, setCurrentIndex }: Ligh
         "transition-opacity duration-300",
         isClosing ? "opacity-0" : "opacity-100"
       )}
-      onClick={handleClose}
+      onClick={handleBackdropClick}
     >
-      <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16">
         <Button
           variant="ghost"
           size="icon"
@@ -95,7 +99,7 @@ export function Lightbox({ files, currentIndex, onClose, setCurrentIndex }: Ligh
         </Button>
         
         <div
-          className="lightbox-content relative w-full h-full"
+          className="lightbox-content relative w-full h-full max-w-7xl max-h-[90vh]"
         >
           {currentFile.type === 'image' && (
             <Image
