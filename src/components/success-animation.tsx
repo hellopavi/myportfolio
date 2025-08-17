@@ -1,36 +1,33 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import type Lottie from 'react-lottie';
 import animationData from './lottie/success.json';
 
-// Dynamically import Lottie to avoid SSR issues
-const LottiePlayer = React.lazy(() => import('react-lottie'));
+const defaultOptions = {
+  loop: false,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice'
+  }
+};
 
 export function SuccessAnimation() {
-  const [isClient, setIsClient] = useState(false);
+  const [LottiePlayer, setLottiePlayer] = useState<typeof Lottie | null>(null);
 
   useEffect(() => {
-    setIsClient(true);
+    import('react-lottie').then((module) => {
+      setLottiePlayer(() => module.default);
+    });
   }, []);
-  
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-  };
 
-  if (!isClient) {
-    // Render a placeholder or nothing on the server
-    return <div style={{width: 150, height: 150}} />;
+  if (!LottiePlayer) {
+    return <div style={{ width: 150, height: 150 }} />;
   }
 
   return (
-    <React.Suspense fallback={<div style={{width: 150, height: 150}} />}>
-      <LottiePlayer options={defaultOptions} height={150} width={150} />
-    </React.Suspense>
+    <LottiePlayer options={defaultOptions} height={150} width={150} />
   );
 }
