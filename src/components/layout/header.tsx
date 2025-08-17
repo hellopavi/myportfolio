@@ -4,16 +4,17 @@ import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Menu, X, Bot } from 'lucide-react';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 const NavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode, onClick?: () => void }) => (
-  <a
+  <Link
     href={href}
     onClick={onClick}
     className="group font-headline text-lg uppercase tracking-widest text-foreground/80 transition-colors hover:text-accent relative"
   >
     {children}
     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300"></span>
-  </a>
+  </Link>
 );
 
 export function Header() {
@@ -53,24 +54,24 @@ export function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const leftNavLinks = [
-    { href: "#testimonials", label: "Raves" },
-    { href: "#blog", label: "Blog" },
-    { href: "#projects", label: "Projects" },
+    { href: "/#testimonials", label: "Raves" },
+    { href: "/blog", label: "Blog" },
+    { href: "/#projects", label: "Projects" },
   ];
 
   const rightNavLinks = [
-    { href: "#skills", label: "Skills" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#about", label: "About" },
+    { href: "/#contact", label: "Contact" },
   ];
   
   const allNavLinks = [
-    { href: "#testimonials", label: "Raves" },
-    { href: "#blog", label: "Blog" },
-    { href: "#projects", label: "Projects" },
-    { href: "#skills", label: "Skills" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#testimonials", label: "Raves" },
+    { href: "/blog", label: "Blog" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#about", label: "About" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
@@ -88,20 +89,20 @@ export function Header() {
           ))}
         </nav>
 
-        <a href="#home" className="hidden md:flex items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch mx-8" data-text="HelloPavi">
+        <Link href="/" className="hidden md:flex items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch mx-8" data-text="HelloPavi">
           <Bot className="h-8 w-8 text-accent" />
           <span>
             <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
           </span>
-        </a>
+        </Link>
         
         {/* Mobile Logo */}
-        <a href="#home" className="flex md:hidden items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
+        <Link href="/" className="flex md:hidden items-center gap-2 font-headline text-3xl font-bold tracking-tighter animate-glitch" data-text="HelloPavi">
           <Bot className="h-8 w-8 text-accent" />
           <span>
             <span className="text-primary">Hello</span><span className="text-accent">Pavi</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex flex-1 items-center justify-around">
            {rightNavLinks.map(link => (
