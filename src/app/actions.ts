@@ -25,7 +25,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 
   const { name, email, message } = validatedFields.data;
-  const toEmail = "Pavithranofficial1@gmail.com";
+  const toEmail = "pavithranofficial1@gmail.com";
 
   console.log(`Sending email to ${toEmail}`);
   console.log(`From: ${name} <${email}>`);
