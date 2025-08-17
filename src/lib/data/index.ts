@@ -5,7 +5,7 @@ const resumeUrl = "https://drive.google.com/file/d/1WzQauysTn6igeazuxZRWkpv9X7vl
 export const aboutData = {
   name: "Pavithran",
   image: "/images/profile/mypic4.png",
-  imageHint: "professional indian developer portrait",
+  imageHint: "pavithran portrait",
   bio: [
     "I'm Pavithran, a curious and motivated individual with a strong passion for Artificial Intelligence. My journey began with exploring various internet resources, where I diving deep into machine learning, deep learning, and computer vision. I have hands-on experience with scikit-learn and TensorFlow, which I use to build and optimize AI models. My background in computer science and engineering has equipped me with the skills to tackle real-world problems and develop practical solutions.",
     "I'm eager to apply my knowledge in AI through collaboration on real-world projects, from data preprocessing to model deployment. I thrive in both independent and team settings, always looking to learn, grow, and contribute to innovative AI solutions. My goal is to gain hands-on experience and further develop my technical skills by working with experienced professionals in the field.",
@@ -43,6 +43,16 @@ export const projects = [
     description: "Projects in computer vision including moving object detection, face detection, and emotion recognition using pre-built libraries.",
     keywords: "Computer Vision, OpenCV, Object Detection, Face Detection, Emotion Recognition",
     projectDetails: "Utilized computer vision libraries to build applications for detecting moving objects in video, identifying faces, and recognizing emotions from facial expressions.",
+  },
+  {
+    title: "AI Image Generation",
+    slug: "image_gen",
+    category: "Generative AI",
+    image: "/images/projects/cv.webp",
+    imageHint: "AI generated images",
+    description: "Specializing in AI-powered visual creation. This portfolio showcases my ability to translate complex concepts and abstract ideas into stunning, high-quality, and meticulously generated imagery.",
+    keywords: "AI Image Generation, AI Visual Creation, Prompt Engineering , AI Art",
+    projectDetails: "A visual series born from prompt engineering, where each image was precisely sculpted to match the conceptual goal.",
   }
 ];
 
@@ -51,21 +61,21 @@ export type Project = (typeof projects)[0];
 
 export const testimonials = [
   {
-    name: "Jane Doe",
+    name: "Strike Prime",
     title: "CEO, Innovate Inc.",
     image: "/images/clients/men27.jpg",
     imageHint: "woman professional portrait",
     quote: "Working with them was an absolute pleasure. Their creativity and technical expertise are unmatched. They took our vision and turned it into a reality that exceeded all our expectations.",
   },
   {
-    name: "John Smith",
+    name: "William Smith",
     title: "Project Manager, Tech Solutions",
     image: "/images/clients/men35.png",
     imageHint: "man professional portrait",
     quote: "The level of professionalism and dedication to our project was outstanding. They are not just a developer, but a true partner who is invested in your success. Highly recommended!",
   },
   {
-    name: "Emily White",
+    name: "Alita",
     title: "Art Director, Creative Co.",
     image: "/images/clients/fem27.png",
     imageHint: "person professional portrait",

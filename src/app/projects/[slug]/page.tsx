@@ -5,7 +5,8 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { ProjectFileCard } from '@/components/project-file-card';
+import { ProjectFileSlider } from '@/components/project-file-slider';
+import type { ProjectFile } from '@/lib/projects';
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -21,6 +22,11 @@ export default async function ProjectPage({ params }: { params: { slug: string }
   }
 
   const projectFiles = await getProjectFiles(project.slug);
+
+  const imageFiles = projectFiles.filter(file => file.type === 'image');
+  const videoFiles = projectFiles.filter(file => file.type === 'video');
+  const otherFiles = projectFiles.filter(file => file.type !== 'image' && file.type !== 'video');
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -48,11 +54,19 @@ export default async function ProjectPage({ params }: { params: { slug: string }
         <section className="py-20 md:py-32 bg-background">
           <div className="container mx-auto px-4">
             <h2 className="font-headline text-3xl md:text-4xl text-center mb-12 font-bold">Project Files</h2>
+            
             {projectFiles.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                {projectFiles.map((file, index) => (
-                  <ProjectFileCard key={file.name} file={file} index={index} />
-                ))}
+              <div className="space-y-16">
+                {imageFiles.length > 0 && videoFiles.length > 0 && (
+                  <ProjectFileSlider files={imageFiles} title="Images" />
+                )}
+                {imageFiles.length > 0 && videoFiles.length === 0 && (
+                  <ProjectFileSlider files={imageFiles} />
+                )}
+
+                {videoFiles.length > 0 && (
+                  <ProjectFileSlider files={videoFiles} title="Videos" />
+                )}
               </div>
             ) : (
               <div className="text-center py-16 px-8 bg-card rounded-lg border border-dashed border-primary/30">

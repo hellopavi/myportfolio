@@ -3,11 +3,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProjectFile } from "@/lib/projects";
 import Image from "next/image";
-import { FileText, Clapperboard, FileQuestion } from "lucide-react";
+import { FileText, Clapperboard, FileQuestion, PlayCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ProjectFileCardProps {
   file: ProjectFile;
-  index: number;
+  scale: number;
+  inView: boolean;
 }
 
 const FileIcon = ({ type, extension }: { type: ProjectFile['type'], extension: string }) => {
@@ -28,29 +30,47 @@ const FileIcon = ({ type, extension }: { type: ProjectFile['type'], extension: s
   }
 }
 
-export function ProjectFileCard({ file, index }: ProjectFileCardProps) {
+export function ProjectFileCard({ file, scale, inView }: ProjectFileCardProps) {
   return (
-    <a href={file.url} target="_blank" rel="noopener noreferrer">
+    <a href={file.url} target="_blank" rel="noopener noreferrer" className="block">
       <Card 
-        className="bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-up"
-        style={{ animationDelay: `${0.1 + index * 0.05}s`, opacity: 0 }}
+        className={cn(
+            "bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 will-change-transform shadow-lg hover:shadow-2xl hover:shadow-primary/20 rounded-xl",
+            !inView && "grayscale"
+        )}
+        style={{ transform: `scale(${scale})`}}
       >
-        <CardHeader className="p-0 h-48 bg-muted/30 flex items-center justify-center">
-          {file.type === 'image' ? (
+        <CardHeader className="p-0 h-48 md:h-64 bg-muted/30 flex items-center justify-center">
+          {file.type === 'image' && (
             <div className="relative w-full h-full">
               <Image
                 src={file.url}
                 alt={file.name}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain transition-transform duration-500 group-hover:scale-110"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-          ) : (
+          )}
+          {file.type === 'video' && (
+              <div className="relative w-full h-full flex items-center justify-center">
+                <video
+                    src={file.url}
+                    className="w-full h-full object-cover"
+                    playsInline
+                    muted
+                    loop
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <PlayCircle className="w-16 h-16 text-white/80 transform transition-transform group-hover:scale-125" />
+                </div>
+              </div>
+          )}
+          {file.type !== 'image' && file.type !== 'video' && (
             <FileIcon type={file.type} extension={file.extension} />
           )}
         </CardHeader>
-        <CardContent className="p-4">
+        <CardContent className="p-4 bg-card">
           <CardTitle className="font-body text-base truncate" title={file.name}>
             {file.name}
           </CardTitle>
