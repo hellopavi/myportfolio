@@ -56,7 +56,9 @@ export function Lightbox({ files, currentIndex, onClose, setCurrentIndex }: Ligh
       )}
       onClick={handleClose}
     >
-      <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16">
+      <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16"
+        onClick={(e) => e.stopPropagation()}
+      >
         <Button
           variant="ghost"
           size="icon"
@@ -94,7 +96,6 @@ export function Lightbox({ files, currentIndex, onClose, setCurrentIndex }: Ligh
         
         <div
           className="lightbox-content relative w-full h-full"
-          onClick={(e) => e.stopPropagation()}
         >
           {currentFile.type === 'image' && (
             <Image
