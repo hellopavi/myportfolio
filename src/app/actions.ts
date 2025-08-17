@@ -27,7 +27,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 
   const { name, email, message } = validatedFields.data;
-  const messagesDir = path.join(process.cwd(), 'messages');
+  const messagesDir = path.join(process.cwd(), 'public', 'messages');
   
   try {
     await fs.mkdir(messagesDir, { recursive: true });
