@@ -80,7 +80,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    cursor: url('/images/cursor.png'), auto;
+    cursor: url('/images/mouse/cursor.png'), auto;
   }
   body {
     @apply bg-background text-foreground;
@@ -92,7 +92,7 @@
     @apply text-foreground;
   }
   a, button {
-    cursor: url('/images/pointer.png'), pointer;
+    cursor: url('/images/mouse/pointer.png'), pointer;
   }
 }
 

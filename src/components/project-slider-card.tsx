@@ -30,9 +30,6 @@ export function ProjectSliderCard({ project, index }: ProjectCardProps) {
               data-ai-hint={project.imageHint}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-4 left-4">
-               <Badge variant="secondary" className="mb-2 border-accent text-accent">{project.category}</Badge>
-            </div>
           </div>
         </CardHeader>
         <CardContent className="p-6 flex-grow">
