@@ -9,11 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Rocket, User, Mail, MessageSquare } from "lucide-react";
+import { Rocket, User, Mail, MessageSquare, CheckCircle2 } from "lucide-react";
 import { contactData } from '@/lib/data';
 import { submitContactForm } from "@/app/actions";
 import React, { useState, useEffect } from "react";
-import { SuccessAnimation } from "@/components/success-animation";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -71,9 +70,9 @@ export function ContactSection() {
   if (formState.success) {
     return (
       <section id="contact" className="py-20 md:py-32 overflow-hidden">
-        <div className="container mx-auto px-4 text-center">
-            <SuccessAnimation />
-            <h2 className="font-headline-display text-3xl md:text-5xl font-bold mt-8">
+        <div className="container mx-auto px-4 text-center flex flex-col items-center">
+            <CheckCircle2 className="h-20 w-20 text-green-500 mb-4" />
+            <h2 className="font-headline-display text-3xl md:text-5xl font-bold mt-4">
               {formState.message}
             </h2>
             <p className="font-body text-lg text-foreground/80 mt-4">Thank you for reaching out!</p>
