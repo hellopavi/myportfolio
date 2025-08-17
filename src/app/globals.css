@@ -302,6 +302,19 @@
     opacity: 1;
   }
 
+  .project-gallery-list .project-file-card {
+    @apply flex items-center gap-4;
+  }
+
+  .project-gallery-list .project-file-card-header {
+    @apply w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0;
+  }
+  
+  .project-gallery-list .project-file-card-content {
+    @apply flex-grow p-0;
+  }
+
+
   @media screen and (max-width: 768px) {
     .box .inner {
       font-size: 2.5em;
@@ -451,3 +464,5 @@
     border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
   }
 }
+
+    

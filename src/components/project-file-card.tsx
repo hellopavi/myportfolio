@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { ProjectFile } from "@/lib/projects";
 import Image from "next/image";
 import { FileText, Clapperboard, FileQuestion, PlayCircle } from "lucide-react";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 interface ProjectFileCardProps {
   file: ProjectFile;
   index: number;
+  view: 'grid' | 'list';
 }
 
 const FileIcon = ({ type, extension }: { type: ProjectFile['type'], extension: string }) => {
@@ -30,7 +31,7 @@ const FileIcon = ({ type, extension }: { type: ProjectFile['type'], extension: s
     }
 }
 
-export function ProjectFileCard({ file, index }: ProjectFileCardProps) {
+export function ProjectFileCard({ file, index, view }: ProjectFileCardProps) {
     const isVideo = file.type === 'video';
 
     return (
@@ -38,9 +39,7 @@ export function ProjectFileCard({ file, index }: ProjectFileCardProps) {
             href={file.url}
             target="_blank" 
             rel="noopener noreferrer" 
-            className="block"
-            // Prevent opening video in new tab, play it inline instead if needed.
-            // For now, it links to the raw file which browsers can handle.
+            className="block group"
             onClick={(e) => {
               if (isVideo) {
                 // Could open a modal player here in the future
@@ -49,11 +48,13 @@ export function ProjectFileCard({ file, index }: ProjectFileCardProps) {
         >
             <Card 
                 className={cn(
-                    "bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 will-change-transform shadow-lg hover:shadow-2xl hover:shadow-primary/20 rounded-xl hover:-translate-y-2 animate-fade-in-up"
+                    "bg-card border-primary/20 overflow-hidden transform transition-all duration-500 will-change-transform shadow-lg hover:shadow-2xl hover:shadow-primary/20 rounded-xl hover:-translate-y-1",
+                    "animate-fade-in-up",
+                    view === 'grid' ? "aspect-square" : "project-file-card"
                 )}
                 style={{ animationDelay: `${0.1 + index * 0.05}s`, opacity: 0 }}
             >
-                <CardHeader className="p-0 h-48 md:h-56 bg-muted/30 flex items-center justify-center">
+                <CardHeader className={cn("p-0 bg-muted/30 flex items-center justify-center", view === 'grid' ? 'h-full' : 'project-file-card-header')}>
                     {file.type === 'image' && (
                         <div className="relative w-full h-full">
                             <Image
@@ -83,12 +84,16 @@ export function ProjectFileCard({ file, index }: ProjectFileCardProps) {
                         <FileIcon type={file.type} extension={file.extension} />
                     )}
                 </CardHeader>
-                <CardContent className="p-4 bg-card">
-                    <CardTitle className="font-body text-base truncate" title={file.name}>
+                {view === 'list' && (
+                  <div className="p-4 bg-card flex-grow project-file-card-content">
+                     <p className="font-body text-base truncate" title={file.name}>
                         {file.name}
-                    </CardTitle>
-                </CardContent>
+                    </p>
+                  </div>
+                )}
             </Card>
         </a>
     );
 }
+
+    
