@@ -16,14 +16,16 @@ const defaultOptions = {
 
 export function SuccessAnimation() {
   const [LottiePlayer, setLottiePlayer] = useState<typeof Lottie | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     import('react-lottie').then((module) => {
       setLottiePlayer(() => module.default);
     });
   }, []);
 
-  if (!LottiePlayer) {
+  if (!isMounted || !LottiePlayer) {
     return <div style={{ width: 150, height: 150 }} />;
   }
 
