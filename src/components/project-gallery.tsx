@@ -7,6 +7,7 @@ import { ProjectFileCard } from '@/components/project-file-card';
 import type { ProjectFile } from '@/lib/projects';
 import { LayoutGrid, List } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Lightbox } from '@/components/lightbox';
 
 type FilterType = 'all' | 'image' | 'video' | 'other';
 type ViewType = 'grid' | 'list';
@@ -19,6 +20,7 @@ interface ProjectGalleryProps {
 export function ProjectGallery({ files, projectSlug }: ProjectGalleryProps) {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [view, setView] = useState<ViewType>('grid');
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filteredFiles = useMemo(() => {
     if (activeFilter === 'all') {
@@ -29,10 +31,28 @@ export function ProjectGallery({ files, projectSlug }: ProjectGalleryProps) {
     }
     return files.filter((file) => file.type === activeFilter);
   }, [files, activeFilter]);
+  
+  const mediaFiles = useMemo(() => files.filter(f => f.type === 'image' || f.type === 'video'), [files]);
+
+  const openLightbox = (index: number) => {
+    const originalIndex = files.findIndex(file => file.url === mediaFiles[index].url);
+    setLightboxIndex(originalIndex);
+  };
+  
+  const closeLightbox = () => setLightboxIndex(null);
 
   const hasImages = files.some(file => file.type === 'image');
   const hasVideos = files.some(file => file.type === 'video');
   const hasOtherFiles = files.some(file => file.type !== 'image' && file.type !== 'video');
+  
+  const handlePreview = (index: number) => {
+    const file = filteredFiles[index];
+    const mediaIndex = mediaFiles.findIndex(m => m.url === file.url);
+    if(mediaIndex !== -1) {
+      setLightboxIndex(mediaIndex);
+    }
+  }
+
 
   return (
     <>
@@ -61,7 +81,13 @@ export function ProjectGallery({ files, projectSlug }: ProjectGalleryProps) {
                 : 'space-y-4 project-gallery-list'
           )}>
             {filteredFiles.map((file, index) => (
-              <ProjectFileCard key={file.url} file={file} index={index} view={view}/>
+              <ProjectFileCard 
+                key={file.url} 
+                file={file} 
+                index={index} 
+                view={view}
+                onPreview={handlePreview}
+              />
             ))}
           </div>
         </>
@@ -76,8 +102,14 @@ export function ProjectGallery({ files, projectSlug }: ProjectGalleryProps) {
           </p>
         </div>
       )}
+      {lightboxIndex !== null && (
+        <Lightbox
+          files={mediaFiles}
+          currentIndex={lightboxIndex}
+          onClose={closeLightbox}
+          setCurrentIndex={setLightboxIndex}
+        />
+      )}
     </>
   )
 }
-
-    
