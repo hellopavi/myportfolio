@@ -5,9 +5,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Belleza, Alegreya, Orbitron } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CustomContextMenu } from '@/components/custom-context-menu';
 import { useCustomContextMenu } from '@/hooks/use-custom-context-menu';
+import { Preloader } from '@/components/preloader';
 
 // This is a workaround for Metadata in a client component
 const metadata: Metadata = {
@@ -39,6 +40,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { contextMenu } = useCustomContextMenu();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Adjust time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
@@ -47,8 +57,14 @@ export default function RootLayout({
         <meta name="description" content={String(metadata.description)} />
       </head>
       <body className={cn("font-body bg-background text-foreground antialiased", belleza.variable, alegreya.variable, orbitron.variable)} suppressHydrationWarning>
-        {children}
-        {contextMenu && <CustomContextMenu {...contextMenu} />}
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <>
+            {children}
+            {contextMenu && <CustomContextMenu {...contextMenu} />}
+          </>
+        )}
       </body>
     </html>
   );
