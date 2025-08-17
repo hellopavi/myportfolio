@@ -10,6 +10,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { Rocket, User, Mail, MessageSquare } from "lucide-react";
 import { contactData } from '@/lib/data';
+import { submitContactForm } from "@/app/actions";
+import React, { useState, useEffect } from "react";
+import { SuccessAnimation } from "@/components/success-animation";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -19,6 +22,9 @@ const formSchema = z.object({
 
 export function ContactSection() {
   const { toast } = useToast();
+  const [formState, setFormState] = useState<{ success: boolean; message: string | null }>({ success: false, message: null });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,13 +34,52 @@ export function ContactSection() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Transmission Received!",
-      description: "Thanks for reaching out from the cosmos. I'll get back to you at light speed!",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    setFormState({ success: false, message: null });
+
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    formData.append('message', values.message);
+
+    try {
+      const result = await submitContactForm(null, formData);
+      setFormState(result);
+
+      if (result.success) {
+        form.reset();
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Oh no! Something went wrong.",
+          description: result.message || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+       toast({
+          variant: "destructive",
+          title: "Oh no! Something went wrong.",
+          description: "An unexpected error occurred. Please try again.",
+        });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+  
+  if (formState.success) {
+    return (
+      <section id="contact" className="py-20 md:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+            <SuccessAnimation />
+            <h2 className="font-headline-display text-3xl md:text-5xl font-bold mt-8">
+              {formState.message}
+            </h2>
+            <p className="font-body text-lg text-foreground/80 mt-4">Thank you for reaching out!</p>
+            <Button onClick={() => setFormState({ success: false, message: null })} className="mt-8">Send Another Message</Button>
+        </div>
+      </section>
+    )
   }
 
   return (
@@ -91,9 +136,9 @@ export function ContactSection() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size="lg" className="w-full text-lg font-headline group bg-accent hover:bg-accent/80 text-accent-foreground transform transition-all duration-300 hover:scale-110">
+              <Button type="submit" size="lg" className="w-full text-lg font-headline group bg-accent hover:bg-accent/80 text-accent-foreground transform transition-all duration-300 hover:scale-110" disabled={isSubmitting}>
                 <Rocket className="mr-3 h-6 w-6 transition-transform duration-500 group-hover:rotate-[-45deg] group-hover:scale-125" />
-                Transmit Message
+                {isSubmitting ? 'Transmitting...' : 'Transmit Message'}
               </Button>
             </form>
           </Form>
