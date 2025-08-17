@@ -22,7 +22,12 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
 
 export const ProjectFileSlider: React.FC<PropType> = (props) => {
   const { files, title, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    ...options,
+    loop: true,
+    align: 'center',
+    containScroll: 'trimSnaps'
+  });
   const [tweenValues, setTweenValues] = useState<number[]>([]);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);

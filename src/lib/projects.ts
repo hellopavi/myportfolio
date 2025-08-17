@@ -36,7 +36,11 @@ export async function getProjectFiles(projectSlug: string): Promise<ProjectFile[
     });
   } catch (error) {
     // If the directory doesn't exist, just return an empty array.
-    console.warn(`Directory not found for project slug: ${projectSlug}. Returning empty file list.`);
-    return [];
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      console.warn(`Directory not found for project slug: ${projectSlug}. Returning empty file list.`);
+      return [];
+    }
+    // For other errors, re-throw them.
+    throw error;
   }
 }

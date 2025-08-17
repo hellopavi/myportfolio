@@ -60,8 +60,9 @@ export function ProjectFileCard({ file, scale, inView }: ProjectFileCardProps) {
                     playsInline
                     muted
                     loop
+                    autoPlay
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <PlayCircle className="w-16 h-16 text-white/80 transform transition-transform group-hover:scale-125" />
                 </div>
               </div>
