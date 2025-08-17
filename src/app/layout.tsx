@@ -5,8 +5,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Belleza, Alegreya, Orbitron } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { CustomContextMenu } from '@/components/custom-context-menu';
+import { useCustomContextMenu } from '@/hooks/use-custom-context-menu';
 
 // This is a workaround for Metadata in a client component
 const metadata: Metadata = {
@@ -37,28 +38,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [contextMenu, setContextMenu] = useState<{ x: number; y: number; isOpen: boolean } | null>(null);
-
-  const handleContextMenu = useCallback((event: MouseEvent) => {
-    event.preventDefault();
-    setContextMenu({ x: event.pageX, y: event.pageY, isOpen: true });
-  }, []);
-
-  const handleClick = useCallback(() => {
-    if (contextMenu?.isOpen) {
-      setContextMenu(null);
-    }
-  }, [contextMenu]);
-
-  useEffect(() => {
-    document.addEventListener('contextmenu', handleContextMenu);
-    document.addEventListener('click', handleClick);
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-      document.removeEventListener('click', handleClick);
-    };
-  }, [handleContextMenu, handleClick]);
-
+  const { contextMenu } = useCustomContextMenu();
 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
