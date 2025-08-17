@@ -12,6 +12,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
+import { Button } from '../ui/button';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 export type { Project };
 
@@ -35,7 +38,7 @@ export function ProjectsSection() {
               stopOnInteraction: true,
             }),
           ]}
-          className="w-full"
+          className="w-full mb-12"
         >
           <CarouselContent className="-ml-8">
             {projects.map((project, index) => (
@@ -49,6 +52,14 @@ export function ProjectsSection() {
           <CarouselPrevious className="text-accent -left-4" />
           <CarouselNext className="text-accent -right-4" />
         </Carousel>
+        <div className="text-center">
+            <Button asChild size="lg" className="font-headline text-lg group">
+                <Link href="/projects">
+                    View All Projects
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+            </Button>
+        </div>
       </div>
     </section>
   );

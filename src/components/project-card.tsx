@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/components/sections/projects-section';
+import Link from 'next/link';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,9 +15,9 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <>
+    <Link href={`/projects/${project.slug}`} className="group block h-full">
       <Card 
-        className="bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-up"
+        className="bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-up h-full flex flex-col"
         style={{ animationDelay: `${0.3 + index * 0.15}s`, opacity: 0 }}
       >
         <CardHeader className="p-0">
@@ -31,14 +32,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             />
           </div>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-6 flex-grow">
           <Badge variant="outline" className="mb-2 border-accent text-accent">{project.category}</Badge>
-          <CardTitle className="font-headline text-2xl mb-2">{project.title}</CardTitle>
-          <p className="font-body text-foreground/80 min-h-[100px] md:min-h-[125px]">
+          <CardTitle className="font-headline text-2xl mb-2 group-hover:text-accent transition-colors">{project.title}</CardTitle>
+          <p className="font-body text-foreground/80">
             {project.description}
           </p>
         </CardContent>
       </Card>
-    </>
+    </Link>
   );
 }
