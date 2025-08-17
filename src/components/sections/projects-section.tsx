@@ -40,9 +40,9 @@ export function ProjectsSection() {
           ]}
           className="w-full mb-12"
         >
-          <CarouselContent className="-ml-8">
+          <CarouselContent className="">
             {projects.map((project, index) => (
-              <CarouselItem key={project.title} className="pl-8 md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={project.title} className="md:basis-1/2 lg:basis-1/3">
                 <div className="h-full p-1">
                   <ProjectSliderCard project={project} index={index} />
                 </div>
