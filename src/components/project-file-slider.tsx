@@ -81,24 +81,26 @@ export const ProjectFileSlider: React.FC<PropType> = (props) => {
       <div className="relative">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4" style={{ perspective: '1000px' }}>
-            {files.map((file, index) => (
+            {files.map((file, index) => {
+              const tweenValue = tweenValues[index] || 0;
+              return (
               <div
                 className="flex-shrink-0 flex-grow-0 min-w-0 pl-4 relative"
                 style={{ flexBasis: '40%', '@media (min-width: 768px)': { flexBasis: '25%' } }}
                 key={file.url}
               >
                 <div style={{
-                  transform: `rotateY(${-tweenValues[index] * 20 + 10}deg) scale(${tweenValues[index] * 0.4 + 0.6})`,
-                  opacity: tweenValues[index] * 0.5 + 0.5
+                  transform: `rotateY(${-tweenValue * 20 + 10}deg) scale(${tweenValue * 0.4 + 0.6})`,
+                  opacity: tweenValue * 0.5 + 0.5
                 }}>
                   <ProjectFileCard
                     file={file}
-                    scale={tweenValues[index]}
-                    inView={tweenValues[index] > 0.5}
+                    scale={tweenValue}
+                    inView={tweenValue > 0.5}
                   />
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
         
