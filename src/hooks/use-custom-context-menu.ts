@@ -8,7 +8,7 @@ export function useCustomContextMenu() {
 
   const handleContextMenu = useCallback((event: MouseEvent) => {
     event.preventDefault();
-    setContextMenu({ x: event.pageX, y: event.pageY, isOpen: true });
+    setContextMenu({ x: event.clientX, y: event.clientY, isOpen: true });
   }, []);
 
   const handleClick = useCallback(() => {
