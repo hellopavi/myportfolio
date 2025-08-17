@@ -54,7 +54,7 @@ export function CustomContextMenu({ x, y, isOpen }: CustomContextMenuProps) {
         <MenuItem icon={Redo2} label="Forward" onClick={handleForward} />
         <MenuItem icon={RefreshCw} label="Refresh" onClick={handleRefresh} />
         <div className="h-px my-2 bg-primary/20" />
-        <MenuItem icon={Download} label="Download Resume" href={socialLinks.resume} />
+        <MenuItem icon={Download} label="Download Pavi Resume" href={socialLinks.resume} />
       </div>
     </div>
   );
