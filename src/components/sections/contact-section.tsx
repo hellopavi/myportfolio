@@ -75,7 +75,7 @@ export function ContactSection() {
             <h2 className="font-headline-display text-3xl md:text-5xl font-bold mt-4">
               {formState.message}
             </h2>
-            <p className="font-body text-lg text-foreground/80 mt-4">Thank you for reaching out!</p>
+            <p className="font-body text-lg text-foreground/80 mt-4">I'll get back to you soon!</p>
             <Button onClick={() => setFormState({ success: false, message: null })} className="mt-8">Send Another Message</Button>
         </div>
       </section>

@@ -2,6 +2,8 @@
 'use server';
 
 import { z } from 'zod';
+import fs from 'fs/promises';
+import path from 'path';
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -25,21 +27,20 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 
   const { name, email, message } = validatedFields.data;
-  const toEmail = "pavithranofficial1@gmail.com";
-
-  console.log(`Sending email to ${toEmail}`);
-  console.log(`From: ${name} <${email}>`);
-  console.log(`Message: ${message}`);
+  const messagesDir = path.join(process.cwd(), 'messages');
   
-  // Here you would integrate with an email sending service like Resend, Nodemailer, etc.
-  // For this example, we'll simulate a successful email dispatch.
   try {
-    // const sent = await sendEmail({ to: toEmail, from: email, subject: `Message from ${name}`, html: message });
-    // if(!sent) throw new Error("Email failed to send.");
+    await fs.mkdir(messagesDir, { recursive: true });
+    const timestamp = new Date().toISOString().replace(/:/g, '-');
+    const filename = `${timestamp}-${name.replace(/\s+/g, '_')}.txt`;
+    const filePath = path.join(messagesDir, filename);
+    const fileContent = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
 
-    return { success: true, message: 'Message sent to Pavithran' };
+    await fs.writeFile(filePath, fileContent);
+
+    return { success: true, message: 'Message received. Thank you!' };
   } catch (error) {
     console.error(error);
-    return { success: false, message: 'Failed to send message.' };
+    return { success: false, message: 'Failed to save message.' };
   }
 }
