@@ -77,7 +77,7 @@ export function ProjectGallery({ files, projectSlug }: ProjectGalleryProps) {
 
           <div className={cn(
             view === 'grid' 
-                ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8' 
+                ? 'grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6' 
                 : 'space-y-4 project-gallery-list'
           )}>
             {filteredFiles.map((file, index) => (
