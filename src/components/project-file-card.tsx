@@ -31,9 +31,7 @@ const FileIcon = ({ type, extension }: { type: ProjectFile['type'], extension: s
 }
 
 const FilePreviewOverlay = () => (
-    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <Eye className="w-12 h-12 text-white/80 transform transition-transform group-hover:scale-110" />
-    </div>
+    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 );
 
 export function ProjectFileCard({ file, index, view, onPreview }: ProjectFileCardProps) {
