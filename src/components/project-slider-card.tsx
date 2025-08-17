@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/components/sections/projects-section';
+import Link from 'next/link';
 
 interface ProjectCardProps {
   project: Project;
@@ -15,7 +16,7 @@ interface ProjectCardProps {
 export function ProjectSliderCard({ project, index }: ProjectCardProps) {
 
   return (
-    <>
+    <Link href={`/projects/${project.slug}`} className="h-full block">
       <Card
         className="bg-card border-primary/20 overflow-hidden group transform transition-all duration-500 h-full flex flex-col hover:shadow-2xl hover:shadow-primary/20"
       >
@@ -39,6 +40,6 @@ export function ProjectSliderCard({ project, index }: ProjectCardProps) {
           </p>
         </CardContent>
       </Card>
-    </>
+    </Link>
   );
 }

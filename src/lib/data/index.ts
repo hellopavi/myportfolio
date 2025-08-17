@@ -16,6 +16,7 @@ export const aboutData = {
 export const projects = [
   {
     title: "Machine Learning Projects",
+    slug: "ml",
     category: "Machine Learning",
     image: "/images/projects/ml.jpg",
     imageHint: "abstract machine learning",
@@ -25,6 +26,7 @@ export const projects = [
   },
   {
     title: "Deep Learning Projects",
+    slug: "dl",
     category: "Deep Learning",
     image: "/images/projects/dl.webp",
     imageHint: "neural network",
@@ -34,6 +36,7 @@ export const projects = [
   },
   {
     title: "Computer Vision Projects",
+    slug: "cv",
     category: "Computer Vision",
     image: "/images/projects/cv.webp",
     imageHint: "object detection overlay",
