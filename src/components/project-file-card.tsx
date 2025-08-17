@@ -30,10 +30,6 @@ const FileIcon = ({ type, extension }: { type: ProjectFile['type'], extension: s
     }
 }
 
-const FilePreviewOverlay = () => (
-    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-);
-
 export function ProjectFileCard({ file, index, view, onPreview }: ProjectFileCardProps) {
     const isMedia = file.type === 'image' || file.type === 'video';
 
@@ -57,19 +53,17 @@ export function ProjectFileCard({ file, index, view, onPreview }: ProjectFileCar
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <FilePreviewOverlay />
                   </>
               )}
               {file.type === 'video' && (
                   <>
                     <video
                         src={file.url + '#t=0.1'}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         playsInline
                         muted
                         preload="metadata"
                     />
-                    <FilePreviewOverlay />
                   </>
               )}
               {file.type !== 'image' && file.type !== 'video' && (
