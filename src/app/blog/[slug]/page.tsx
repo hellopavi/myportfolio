@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{ slug: string }>; // Changed: params is now a Promise
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>; // Changed: searchParams is also a Promise
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -29,8 +29,11 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }));
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage({ params, searchParams }: PageProps) {
   const { slug } = await params; // Changed: await params
+  // If you need searchParams in the future, await it like this:
+  // const resolvedSearchParams = searchParams ? await searchParams : {};
+  
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
