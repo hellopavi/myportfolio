@@ -1,4 +1,3 @@
-
 import { notFound } from 'next/navigation';
 import { projects } from '@/lib/data';
 import { getProjectFiles } from '@/lib/projects';
@@ -9,9 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { ProjectGallery } from '@/components/project-gallery';
 import type { Metadata } from 'next';
 
-interface PageProps {
+
+type PageProps = {
   params: { slug: string };
-}
+};
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
