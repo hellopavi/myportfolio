@@ -2,18 +2,12 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/myportfolio', // Change this to match your repository name
-  assetPrefix: '/myportfolio/', // Change this to match your repository name
+  basePath: '/myportfolio',
+  assetPrefix: '/myportfolio/',
+  trailingSlash: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-    unoptimized: true, // Required for static export
+    unoptimized: true,
+    domains: ['placehold.co'],
   },
   devIndicators: {
     buildActivity: false,

@@ -4,16 +4,15 @@ import Image from 'next/image';
 import { Calendar, Tag } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { notFound } from 'next/navigation';
-import { blogPosts, type BlogPost } from '@/lib/data';
+import { blogPosts } from '@/lib/data';
 import type { Metadata } from 'next';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+interface PageProps {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const post = blogPosts.find((p) => p.slug === params.slug);
   if (!post) return { title: 'Post Not Found' };
   
@@ -23,13 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: PageProps) {
   const post = blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
