@@ -4,7 +4,24 @@ import Image from 'next/image';
 import { Calendar, Tag } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { notFound } from 'next/navigation';
-import { blogPosts } from '@/lib/data';
+import { blogPosts, type BlogPost } from '@/lib/data';
+import type { Metadata } from 'next';
+
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = blogPosts.find((p) => p.slug === params.slug);
+  if (!post) return { title: 'Post Not Found' };
+  
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
+}
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -12,7 +29,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: Props) {
   const post = blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
