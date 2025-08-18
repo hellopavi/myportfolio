@@ -7,8 +7,32 @@ import { Footer } from '@/components/layout/footer';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { ProjectGallery } from '@/components/project-gallery';
+import type { Metadata } from 'next';
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: { slug: string };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const project = projects.find((p) => p.slug === params.slug);
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+  return {
+    title: project.title,
+    description: project.description,
+  };
+}
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export default async function ProjectPage({ params }: PageProps) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
