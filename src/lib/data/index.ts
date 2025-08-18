@@ -57,7 +57,7 @@ export const projects = [
 ];
 
 export type Project = (typeof projects)[0];
-
+export type BlogPost = (typeof blogPosts)[0];
 
 export const testimonials = [
   {
